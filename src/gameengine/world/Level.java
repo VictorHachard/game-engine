@@ -7,6 +7,11 @@ import java.util.List;
 
 import gameengine.entities.GameObject;
 
+/**
+ * Class representing an level.
+ * @author Main
+ *
+ */
 public class Level {
 	List<GameObject> lstGameObject;
 	String nomLevel;
@@ -23,9 +28,9 @@ public class Level {
 	
 	/**
 	 * Add a game object to the array.
-	 * @param Game object
+	 * @param g a Game(s) object(s).
 	 */
-	public void addGameObject(GameObject ... g) {
+	public void addGameObject(GameObject... g) {
 		 for (GameObject gs : g) {
 			 lstGameObject.add(gs);
 		 }
@@ -33,9 +38,9 @@ public class Level {
 	
 	/**
 	 * Remove a game object from the array.
-	 * @param g
+	 * @param g a Game(s) object(s).
 	 */
-	public void removeGameObject(GameObject ... g) {
+	public void removeGameObject(GameObject... g) {
 		for (GameObject gs : g) {
 			 lstGameObject.remove(gs);
 		 }		
