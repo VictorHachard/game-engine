@@ -17,7 +17,7 @@ public class GameSetting {
 	 */
 	private double height;
 	/**
-	 * Hauteur de la fenêtre.
+	 * Nom de la fenêtre.
 	 */
 	private String title;
 	

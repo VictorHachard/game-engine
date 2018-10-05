@@ -23,17 +23,15 @@ public abstract class GameApp extends Application{
 		initTest();
 	}
 	
-	public void initTest() {
-		
-	}
+	public void initTest() {}
+	public void initLevel() {}
 	
-	public void initLevel() {
-		
-	}
+	/**
+	 * Create a game world
+	 */
 	public void initGameWorld() {
 		gameWorld = new GameWorld();
 	}
-	
 	
 	public GameWorld getGameWorld() {
 		return gameWorld;

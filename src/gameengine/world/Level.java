@@ -20,12 +20,27 @@ public class Level {
 	public void setNomLevel(String nomLevel) {
 		this.nomLevel = nomLevel;
 	}
-	public void addGameObject(GameObject g) {
-		lstGameObject.add(g);
+	
+	/**
+	 * Add a game object to the array.
+	 * @param Game object
+	 */
+	public void addGameObject(GameObject ... g) {
+		 for (GameObject gs : g) {
+			 lstGameObject.add(gs);
+		 }
 	}
-	public void removeGameObject(GameObject g) {
-		lstGameObject.remove(g);		
+	
+	/**
+	 * Remove a game object from the array.
+	 * @param g
+	 */
+	public void removeGameObject(GameObject ... g) {
+		for (GameObject gs : g) {
+			 lstGameObject.remove(gs);
+		 }		
 	}
+	
 	public List<GameObject> getLstGameObject() {
 		return Collections.unmodifiableList(lstGameObject);
 	}
