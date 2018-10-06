@@ -84,7 +84,10 @@ public class GameObject {
 	}
 	
 	public void update() {
-		
+		if(velocity.getX() == 0 && velocity.getY() == 0) {
+			return;
+		}
+		this.position.add(velocity);
  	}
 
 	

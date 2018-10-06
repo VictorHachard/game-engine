@@ -3,7 +3,7 @@ package gameengine.app;
 import javafx.scene.layout.StackPane;
 
 /**
- * Contient toute la configuration du jeu
+ * Class containing the information of the window.
  * @author Main
  *
  */

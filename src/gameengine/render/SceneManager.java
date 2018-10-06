@@ -13,8 +13,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author Main
+ *
+ */
 public class SceneManager {
-	
 	private Stage stage;
 	private Scene scene;
 	private Pane root;

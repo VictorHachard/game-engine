@@ -1,17 +1,22 @@
 package gameengine.app;
 
 import gameengine.core.GameEngine;
+import gameengine.input.Input;
 import gameengine.render.Camera;
 import gameengine.render.SceneManager;
 import gameengine.world.GameWorld;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public abstract class GameApp extends Application{
+/**
+ * 
+ */
+public abstract class GameApp extends Application {
 	private GameSetting setting;
 	private SceneManager manager;
 	private GameWorld gameWorld;
 	private GameEngine gameEngine;
+	private Input input;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		setting = new GameSetting();
@@ -25,7 +30,7 @@ public abstract class GameApp extends Application{
 		manager = new SceneManager(setting,camera);
 
 
-
+		enableInput();
 		initGameEngine();
 		initTest();
 	}
@@ -37,6 +42,16 @@ public abstract class GameApp extends Application{
 	public void initTest() {}
 	public void initLevel() {}
 	public void initCamera(Camera camera) {}
+	
+	public void initInput() {
+		
+	}
+	public void enableInput() {
+		input = new Input(manager.getScene());
+		initInput();
+		input.manageEvent();
+	}
+	
 	/**
 	 * Create a game world.
 	 */
@@ -56,8 +71,10 @@ public abstract class GameApp extends Application{
 		return gameEngine;
 	}
 	
-	public abstract void initSetting(GameSetting setting);
-	
+	public Input getInput() {
+		return input;
+	}
 
+	public abstract void initSetting(GameSetting setting);
 	
 }

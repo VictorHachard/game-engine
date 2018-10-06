@@ -36,10 +36,7 @@ public class GameEngine {
      * Methode gérant les updates du jeu.
      */
 	public void update() {
-    	GameObject g = gameWorld.getLevel().getLstGameObject().get(0);
-    	Point2D p = g.getPosition();
-    	p = new Point2D(p.getX()+0.02,p.getY()+0.02);
-    	g.at(p);
+		gameWorld.getLevel().getLstGameObject().forEach(GameObject::update);
     	sceneManager.getCamera().update();
 	}
 	/**

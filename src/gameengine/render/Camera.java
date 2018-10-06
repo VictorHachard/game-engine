@@ -4,7 +4,11 @@ import gameengine.app.GameSetting;
 import gameengine.entities.GameObject;
 import gameengine.physic.Point2D;
 
-
+/**
+ * Class representing a camera.
+ * @author Main
+ *
+ */
 public class Camera {
 	private Point2D position;
 	private GameObject gameObjectBinded;
