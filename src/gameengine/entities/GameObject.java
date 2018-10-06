@@ -11,11 +11,32 @@ import javafx.geometry.Dimension2D;
  *
  */
 public class GameObject {
+	/**
+	 * The position of the object.
+	 */
 	private Point2D position;
+	/**
+	 * The velocity and direction of movement of the object.
+	 */
 	private Point2D velocity;
+	/**
+	 * The dimension of the object.
+	 */
 	private Dimension2D dimension;
+	/**
+	 * The texture of the object.
+	 */
 	private Texture texture;
+	/**
+	 * The type/name of the object.
+	 */
 	private String type;
+	
+	/**
+	 * Correspond à la reference au lien dans l'objet du jeu.
+	 */
+	private Object object;
+	
 	
 	public Point2D getPosition() {
 		return position;
@@ -33,6 +54,12 @@ public class GameObject {
 		return velocity;
 	}
 	
+	public Object getObject() {
+		return object;
+	}
+	public void setObject(Object object) {
+		this.object = object;
+	}
 	/**
 	 * Setter to set the position of the object.
 	 * @param pos A Point2D (double x, double y).
@@ -83,6 +110,9 @@ public class GameObject {
 		return this;
 	}
 	
+	/**
+	 * Update the object (moving on it's own).
+	 */
 	public void update() {
 		if(velocity.getX() == 0 && velocity.getY() == 0) {
 			return;

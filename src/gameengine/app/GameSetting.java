@@ -1,7 +1,5 @@
 package gameengine.app;
 
-import javafx.scene.layout.StackPane;
-
 /**
  * Class containing the information of the window.
  * @author Main
@@ -9,15 +7,15 @@ import javafx.scene.layout.StackPane;
  */
 public class GameSetting {
 	/**
-	 * Largeur de la fenêtre.
+	 * Width of the window.
 	 */
 	private double width;
 	/**
-	 * Hauteur de la fenêtre.
+	 * Height of the window.
 	 */
 	private double height;
 	/**
-	 * Nom de la fenêtre.
+	 * Name of the window.
 	 */
 	private String title;
 	

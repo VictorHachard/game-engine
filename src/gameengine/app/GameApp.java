@@ -21,6 +21,7 @@ public abstract class GameApp extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		setting = new GameSetting();
 		initSetting(setting);
+		initGameObject();
 		initGameWorld();
 		initLevel();
 		
@@ -51,6 +52,11 @@ public abstract class GameApp extends Application {
 		initInput();
 		input.manageEvent();
 	}
+	/**
+	 * Permet d'initialiser les différentes manère de créer un gameObject.
+	 */
+	public void initGameObject() {}
+	
 	
 	/**
 	 * Create a game world.

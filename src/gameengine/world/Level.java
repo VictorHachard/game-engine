@@ -16,7 +16,6 @@ public class Level {
 	List<GameObject> lstGameObject;
 	String nomLevel;
 	public Level() {
-		
 		lstGameObject = new ArrayList<>();
 	}
 	public String getNomLevel() {

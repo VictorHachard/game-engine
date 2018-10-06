@@ -10,17 +10,20 @@ import javafx.scene.input.KeyCode;
 
 public class Input {
 	private Scene scene;
-	
 	private List<WrapperEvent> lstEvent;
 	private List<WrapperEvent> lstEventCurrent;
-	
-	
 	
 	public Input(Scene sc) {
 		lstEvent = new ArrayList<>();
 		lstEventCurrent = new ArrayList<>();
 		scene = sc;
 	}
+	
+	/**
+	 * Add a UserEvent link to a keyCode in an list.
+	 * @param user A UserEvent (String user).
+	 * @param code A Keycode.
+	 */
 	public void addEvent(UserEvent user, KeyCode code) {
 		try {
 			existEvent(user.getLibelle());
@@ -29,6 +32,13 @@ public class Input {
 		}
 		lstEvent.add(new WrapperEvent(user, code));
 	}
+	
+	/**
+	 * Check if a UserEvent is already in the list thanks to wording(libelle),
+	 * If yes throw a exception (InputNameAlreadyExistException), if not do nothing.
+	 * @param eventName A String wording(libelle).
+	 * @throws InputNameAlreadyExistException
+	 */
 	public void existEvent(String eventName) throws InputNameAlreadyExistException {
 		for (int i = 0; i < lstEvent.size(); i++) {
 			if (lstEvent.get(i).getUserEvent().getLibelle().equals(eventName)) {
@@ -36,6 +46,10 @@ public class Input {
 			}
 		}
 	}
+	
+	/**
+	 * Listens to input from the keyboard, mouse and treats theme.
+	 */
 	public void manageEvent() {
 		scene.setOnKeyPressed((event)->{
 			for (WrapperEvent wrapperEvent : lstEvent) {

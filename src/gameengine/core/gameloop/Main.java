@@ -40,9 +40,9 @@ public class Main extends Application
        launch(args);
     }
     public void update() {
-    	System.out.println("on update");
+    	
     }
     public void render() {
-    	System.out.println("on dessine");
+    	
     }
 }
