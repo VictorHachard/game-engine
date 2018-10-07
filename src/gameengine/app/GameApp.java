@@ -33,6 +33,7 @@ public abstract class GameApp extends Application {
 
 		enableInput();
 		initGameEngine();
+		initCollision();
 		initParticle();
 		initTest();
 	}
@@ -45,9 +46,9 @@ public abstract class GameApp extends Application {
 	public void initLevel() {}
 	public void initCamera(Camera camera) {}
 	public void initParticle() {}
-	public void initInput() {
-		
-	}
+	public void initInput() {}
+	public void initCollision() {}
+	
 	public void enableInput() {
 		input = new Input(manager.getScene());
 		initInput();

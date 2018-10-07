@@ -1,9 +1,10 @@
 package gameengine.entities;
 
 import gameengine.entities.texture.Texture;
+import gameengine.physic.Dimension3D;
 import gameengine.physic.Point2D;
-import javafx.geometry.Dimension2D;
-
+import gameengine.physic.collision.aabb.AABB;
+import javafx.geometry.Point3D;
 
 /**
  * Class representing an object in the world.
@@ -18,7 +19,7 @@ public class GameObject {
 	/**
 	 * The index of the object.
 	 */
-	private Integer zIndex;
+	private Double zIndex;
 	/**
 	 * The velocity and direction of movement of the object.
 	 */
@@ -26,7 +27,7 @@ public class GameObject {
 	/**
 	 * The dimension of the object.
 	 */
-	private Dimension2D dimension;
+	private Dimension3D dimension;
 	/**
 	 * The texture of the object.
 	 */
@@ -35,18 +36,21 @@ public class GameObject {
 	 * The type/name of the object.
 	 */
 	private String type;
-	
+	/**
+	 * 
+	 */
+	private AABB hitbox;
 	/**
 	 * Correspond à la reference au lien dans l'objet du jeu.
 	 */
 	private Object object;
-	public Integer getzIndex() {
+	public Double getzIndex() {
 		return zIndex;
 	}
 	public Point2D getPosition() {
 		return position;
 	}
-	public Dimension2D getDimension() {
+	public Dimension3D getDimension() {
 		return dimension;
 	}
 	public Texture getTexture() {
@@ -59,6 +63,12 @@ public class GameObject {
 		return velocity;
 	}
 	
+	public AABB getHitbox() {
+		return hitbox;
+	}
+	public void setHitbox(AABB hitbox) {
+		this.hitbox = hitbox;
+	}
 	public Object getObject() {
 		return object;
 	}
@@ -77,10 +87,10 @@ public class GameObject {
 	
 	/**
 	 * Setter to set the dimension of the object.
-	 * @param d A Dimension2D (double width, double height).
+	 * @param d A Dimension3D (double width, double height, double depth).
 	 * @return The GameObject.
 	 */
-	public GameObject with(Dimension2D d) {
+	public GameObject with(Dimension3D d) {
 		dimension = d;
 		return this;
 	}
@@ -110,8 +120,17 @@ public class GameObject {
 	 * @param v A Integer.
 	 * @return The GameObject.
 	 */
-	public GameObject with(Integer z) {
+	public GameObject with(Double z) {
 		this.zIndex = z;
+		return this;
+	}
+	/**
+	 * Setter to set the hitbox of the object.
+	 * @param hitbox AABB.
+	 * @return The GameObject.
+	 */
+	public GameObject with(AABB hitbox) {
+		this.hitbox = hitbox;
 		return this;
 	}
 
@@ -130,10 +149,12 @@ public class GameObject {
 	 * Update the object (moving on it's own).
 	 */
 	public void update() {	
-		if(velocity.getX() == 0 && velocity.getY() == 0) {
-			return;
+		if(!(velocity.getX() == 0 && velocity.getY() == 0)) {
+			this.position.add(velocity);
 		}
-		this.position.add(velocity);
+		if(!(hitbox == null)) {
+			this.hitbox.setPosition(new Point3D(this.position.getX(), this.position.getY(), zIndex));
+		}
  	}
 
 	

@@ -20,10 +20,7 @@ public class ParticuleEngine {
 	public void update() {
 		for (Emitter emitter : lstEmitter) {
 			emitter.getLstParticule().addAll(emitter.emit(emitter.getPosition()));
-			System.out.println(emitter.getLstParticule().size());
-			System.out.println(emitter.getPosition());
 			for (Iterator<Particle> iterator = emitter.getLstParticule().iterator(); iterator.hasNext();) {
-
 				Particle p = (Particle) iterator.next();
 				p.update();
 				if(!p.isAlive()) {

@@ -73,7 +73,7 @@ public class SceneManager {
 
 	/**
 	 * 
-	 * @param l The level
+	 * @param l The level.
 	 */
 	private void initListToRender(Level l) {
 		lstGameObjectToRender.clear();
@@ -93,7 +93,7 @@ public class SceneManager {
 	}
 	
 	/**
-	 * z index et position sur y
+	 * z index et position sur y.
 	 * @param l
 	 */
 	private void sort(List<GameObject> l) {
@@ -102,7 +102,8 @@ public class SceneManager {
         	public int compare(GameObject o1, GameObject o2) {
         		if(o1.getzIndex()<o2.getzIndex()) {
         			return -1;
-        		}else if(o1.getzIndex()==o2.getzIndex()) {
+        		}
+        		if(o1.getzIndex().equals(o2.getzIndex())) {
         			if(o1.getPosition().getY()+o1.getDimension().getHeight()<o2.getPosition().getY()+o2.getDimension().getHeight()) {
         				return -1;
         			} else if(o1.getPosition().getY()+o1.getDimension().getHeight()>o2.getPosition().getY()+o2.getDimension().getHeight()) {
@@ -117,40 +118,33 @@ public class SceneManager {
 
 	/**
 	 * Add a layout to the root.
-	 * @param p a Pane(s).
+	 * @param p a Node(s).
 	 */
 	public void addLayout(Node... p) {
 		 for (Node ps : p) {
 			 root.getChildren().add(ps);
 		 }
 	}
-	
 	/**
 	 * Remove a layout to the root.
-	 * @param p a Pane(s).
+	 * @param p a Node(s).
 	 */
 	public void removeLayout(Node... p) {
 		for (Node ps : p) {
 			root.getChildren().remove(ps);
 		 }		
 	}
-
 	public Camera getCamera() {
 		return camera;
 	}
-
 	public void setCamera(Camera camera) {
 		this.camera = camera;
 	}
-
 	public Scene getScene() {
 		return scene;
 	}
-
 	public void setScene(Scene scene) {
 		this.scene = scene;
 	}
-	
-	
 
 }
