@@ -1,6 +1,11 @@
 # GameEngine
 
-Game engines is a tools available for game designers to code out a game quickly and easily without building one from the ground up. This game engine is a 2D based using JavaFX.
+[![NPM Version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+
+Game engine is a tools available for game designers to code out a game quickly and easily without building one from the ground up. This game engine is a 2D based using JavaFX.
+
+![Sample](samle.gif)
 
 ## Getting Started
 
@@ -24,7 +29,7 @@ public class YourGame extends GameApp {
 }
 ```
 
-The second one is to Override several methode :
+The second step is to override several methode :
 
 - The initSetting where you need to define the window characteristic.
 - The initLevel
@@ -172,9 +177,7 @@ Add additional notes about how to deploy this on a live system
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+## Release History
 
 ## Authors
 
@@ -185,9 +188,3 @@ See also the list of [contributors](https://github.com/your/project/contributors
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
