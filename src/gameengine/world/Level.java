@@ -46,7 +46,7 @@ public class Level {
 	}
 	
 	public List<GameObject> getLstGameObject() {
-		return Collections.unmodifiableList(lstGameObject);
+		return lstGameObject;
 	}
 	
 }

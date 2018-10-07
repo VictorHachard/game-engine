@@ -24,15 +24,16 @@ public abstract class GameApp extends Application {
 		initGameObject();
 		initGameWorld();
 		initLevel();
-		
+
 		
 		Camera camera = new Camera(setting);
 		initCamera(camera);
-		manager = new SceneManager(setting,camera);
+		manager = new SceneManager(setting,camera,gameWorld);
 
 
 		enableInput();
 		initGameEngine();
+		initParticle();
 		initTest();
 	}
 	
@@ -43,7 +44,7 @@ public abstract class GameApp extends Application {
 	public void initTest() {}
 	public void initLevel() {}
 	public void initCamera(Camera camera) {}
-	
+	public void initParticle() {}
 	public void initInput() {
 		
 	}

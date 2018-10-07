@@ -34,8 +34,6 @@ public class BuilderLevel {
 		l.setNomLevel(nomLevel);
 		return l;
 	}
-	
-
 	public static Level buildLevel(String nomLevel , String fileName, Integer pas) {
 		Level l = buildLevel(nomLevel);
 		URL url = BuilderLevel.class.getResource(Constante.LEVEL_TEXT_PATH+fileName);
@@ -72,7 +70,7 @@ public class BuilderLevel {
 						if(wrapperGameObject.getId().equals(block)) {
 							GameObject g = wrapperGameObject.getBuilder().createGameObject();
 							g.at(new Point2D(x,y));
-							l.addGameObject(g);								
+							l.addGameObject(g);			
 						}
 					}
 					

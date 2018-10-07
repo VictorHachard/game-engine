@@ -37,12 +37,13 @@ public class GameEngine {
      */
 	public void update() {
 		gameWorld.getLevel().getLstGameObject().forEach(GameObject::update);
+		sceneManager.getParticuleEngine().update();
     	sceneManager.getCamera().update();
 	}
 	/**
 	 * Méthode permettant de rendre la scène.
 	 */
     public void render() {
-    	sceneManager.drawScene(gameWorld);
+    	sceneManager.drawScene();
     }
 }

@@ -16,6 +16,10 @@ public class GameObject {
 	 */
 	private Point2D position;
 	/**
+	 * The index of the object.
+	 */
+	private Integer zIndex;
+	/**
 	 * The velocity and direction of movement of the object.
 	 */
 	private Point2D velocity;
@@ -36,8 +40,9 @@ public class GameObject {
 	 * Correspond à la reference au lien dans l'objet du jeu.
 	 */
 	private Object object;
-	
-	
+	public Integer getzIndex() {
+		return zIndex;
+	}
 	public Point2D getPosition() {
 		return position;
 	}
@@ -101,6 +106,17 @@ public class GameObject {
 	}
 	
 	/**
+	 * Setter to set the z index of the object.
+	 * @param v A Integer.
+	 * @return The GameObject.
+	 */
+	public GameObject with(Integer z) {
+		this.zIndex = z;
+		return this;
+	}
+
+	
+	/**
 	 * Setter to set the type of the object.
 	 * @param ty A name (String).
 	 * @return The GameObject.
@@ -113,7 +129,7 @@ public class GameObject {
 	/**
 	 * Update the object (moving on it's own).
 	 */
-	public void update() {
+	public void update() {	
 		if(velocity.getX() == 0 && velocity.getY() == 0) {
 			return;
 		}
