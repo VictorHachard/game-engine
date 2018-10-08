@@ -123,7 +123,7 @@ public class SceneManager {
 	 * Add a layout to the root.
 	 * @param p a Node(s).
 	 */
-	public void addLayout(Node... p) {
+	public void addUI(Node... p) {
 		 for (Node ps : p) {
 			 root.getChildren().add(ps);
 		 }
@@ -132,7 +132,7 @@ public class SceneManager {
 	 * Remove a layout to the root.
 	 * @param p a Node(s).
 	 */
-	public void removeLayout(Node... p) {
+	public void removeUI(Node... p) {
 		for (Node ps : p) {
 			root.getChildren().remove(ps);
 		 }		
@@ -149,5 +149,5 @@ public class SceneManager {
 	public void setScene(Scene scene) {
 		this.scene = scene;
 	}
-
+	
 }

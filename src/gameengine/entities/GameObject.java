@@ -44,6 +44,11 @@ public class GameObject {
 	 * The pointer that link the object to the game.
 	 */
 	private Object object;
+	
+	
+	
+	public GameObject() {
+	}
 	public Double getzIndex() {
 		return zIndex;
 	}

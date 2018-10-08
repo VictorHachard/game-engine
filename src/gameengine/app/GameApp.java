@@ -27,6 +27,7 @@ public abstract class GameApp extends Application {
 		Camera camera = new Camera(setting);
 		initCamera(camera);
 		manager = new SceneManager(setting,camera,gameWorld);
+		initUI();
 		enableInput();
 		initGameEngine();
 		initCollision();
@@ -44,7 +45,7 @@ public abstract class GameApp extends Application {
 	public void initParticle() {}
 	public void initInput() {}
 	public void initCollision() {}
-	
+	public void initUI() {}
 	public void enableInput() {
 		input = new Input(manager.getScene());
 		initInput();
@@ -73,11 +74,10 @@ public abstract class GameApp extends Application {
 	public GameEngine getGameEngine() {
 		return gameEngine;
 	}
-	
+
 	public Input getInput() {
 		return input;
 	}
-
 	public abstract void initSetting(GameSetting setting);
 	
 }
