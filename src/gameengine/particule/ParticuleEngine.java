@@ -18,16 +18,28 @@ public class ParticuleEngine {
 		super();
 		this.level = level;
 	}
+	/**
+	 * Add an emitter to the active list of emitter, if an emitter is already in the list do nothing.
+	 * @param e The emitter to add to the list.
+	 */
 	public void addEmitter(Emitter... e) {
 		for (Emitter es : e) {
-			level.getLstGameObject().add(es);
-			lstEmitter.add(es);
+			if (!lstEmitter.contains(es)) {
+				level.getLstGameObject().add(es);
+				lstEmitter.add(es);
+			}
 		}
 	}
+	/**
+	 * Remove an emitter to the active list of emitter, if an emitter is not in the list do nothing.
+	 * @param e The emitter to add to the list.
+	 */
 	public void removeEmitter(Emitter... e) {
 		for (Emitter es : e) {
-			level.getLstGameObject().remove(es);
-			lstEmitter.remove(es);
+			if (lstEmitter.contains(es)) {
+				level.getLstGameObject().remove(es);
+				lstEmitter.remove(es);
+			}
 		}
 	}
 	/**
@@ -35,6 +47,7 @@ public class ParticuleEngine {
 	 */
 	public void update() {
 		for (Emitter emitter : lstEmitter) {
+			System.out.println(lstEmitter.get(0).getLstParticule().size());
 			emitter.getLstParticule().addAll(emitter.emit(emitter.getPosition()));
 			for (Iterator<Particle> iterator = emitter.getLstParticule().iterator(); iterator.hasNext();) {
 				Particle p = (Particle) iterator.next();

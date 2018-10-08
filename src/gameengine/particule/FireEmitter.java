@@ -9,6 +9,11 @@ import javafx.scene.effect.BlendMode;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
+/**
+ * 
+ * @author Main
+ *
+ */
 public class FireEmitter extends Emitter{
 
 	@Override
