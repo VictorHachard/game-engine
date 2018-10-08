@@ -8,6 +8,11 @@ import gameengine.input.exception.InputNameAlreadyExistException;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
+/**
+ * Class that handle all inputs.
+ * @author Main
+ *
+ */
 public class Input {
 	private Scene scene;
 	private List<WrapperEvent> lstEvent;

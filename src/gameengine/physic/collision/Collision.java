@@ -3,7 +3,7 @@ package gameengine.physic.collision;
 import gameengine.entities.GameObject;
 
 /**
- * 
+ * Class representing the two game object in collision.
  * @author Main
  *
  */

@@ -8,7 +8,7 @@ import java.util.List;
 import gameengine.entities.GameObject;
 
 /**
- * Class representing an level.
+ * Class representing a level.
  * @author Main
  *
  */
@@ -45,6 +45,10 @@ public class Level {
 		 }		
 	}
 	
+	/**
+	 * Return the list of all the game object in a level.
+	 * @return List<GameObject> All the game object in the level.
+	 */
 	public List<GameObject> getLstGameObject() {
 		return lstGameObject;
 	}

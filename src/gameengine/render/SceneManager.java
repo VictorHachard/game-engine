@@ -21,7 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
- * 
+ * Class that handle the display on the screen.
  * @author Main
  *
  */
@@ -52,6 +52,9 @@ public class SceneManager {
 		stage.show();
 	}
 	
+	/**
+	 * Draw the game object, particle, layout.
+	 */
 	public void drawScene() {
 		Level l = gameWorld.getLevel();
 		initListToRender(l);
@@ -72,8 +75,8 @@ public class SceneManager {
 	}
 
 	/**
-	 * 
-	 * @param l The level.
+	 * Create a list of object to render (if there positions math where the camera is positioning).
+	 * @param l The level to render.
 	 */
 	private void initListToRender(Level l) {
 		lstGameObjectToRender.clear();
@@ -93,8 +96,8 @@ public class SceneManager {
 	}
 	
 	/**
-	 * z index et position sur y.
-	 * @param l
+	 * Sort the list to render (ZIndex and the y axis).
+	 * @param l The list of game object to sort.
 	 */
 	private void sort(List<GameObject> l) {
         Collections.sort(l, new Comparator<GameObject>() {

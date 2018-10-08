@@ -4,6 +4,11 @@ import gameengine.constante.Constante;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 
+/**
+ * Class representing a texture (image).
+ * @author Main
+ *
+ */
 public class Texture {
 	private ImagePattern imagePattern;
 	

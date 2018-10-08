@@ -1,7 +1,7 @@
 package gameengine.physic;
 
 /**
- * Class representing a point with x and y.
+ * Class representing a 2D point with x and y.
  * @author Main
  *
  */

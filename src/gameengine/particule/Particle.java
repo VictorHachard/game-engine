@@ -5,13 +5,17 @@ import gameengine.physic.Point2D;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.paint.Paint;
 
+/**
+ * Class representing a particle.
+ * @author Main
+ *
+ */
 public class Particle extends GameObject{
 	private Double life = 1.0;
 	private Double decay;
 	private BlendMode blendMode;
 	private Paint color;
 	private Double radius;
-
 	public Particle(Point2D position,Point2D direction, Double lifeLeft, BlendMode blendMode, Paint color, Double radius) {
 		this.at(position);
 		this.with(direction);
@@ -20,62 +24,46 @@ public class Particle extends GameObject{
 		this.color = color;
 		this.radius = radius;
 	}
-
-
 	public Double getLife() {
 		return life;
 	}
-
-
 	public void setLife(Double life) {
 		this.life = life;
 	}
-
-
 	public Double getDecay() {
 		return decay;
 	}
-
-
 	public void setDecay(Double decay) {
 		this.decay = decay;
 	}
-
-
 	public BlendMode getBlendMode() {
 		return blendMode;
 	}
-
-
 	public void setBlendMode(BlendMode blendMode) {
 		this.blendMode = blendMode;
 	}
-
-
 	public Paint getColor() {
 		return color;
 	}
-
-
 	public void setColor(Paint color) {
 		this.color = color;
 	}
-
-
 	public Double getRadius() {
 		return radius;
 	}
-
-
 	public void setRadius(Double radius) {
 		this.radius = radius;
 	}
-
-
+	/**
+	 * Verifying if the particle is alive.
+	 * @return true if the particle life > 0, false otherwise.
+	 */
 	public boolean isAlive() {
 		return life > 0;
 	}
-
+	/**
+	 * Update the life, velocity of the particle.
+	 */
 	public void update() {
 		getPosition().add(this.getVelocity());
 		life -= decay;

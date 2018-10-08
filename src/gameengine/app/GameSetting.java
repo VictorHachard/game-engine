@@ -18,7 +18,6 @@ public class GameSetting {
 	 * Name of the window.
 	 */
 	private String title;
-	
 	public double getWidth() {
 		return width;
 	}

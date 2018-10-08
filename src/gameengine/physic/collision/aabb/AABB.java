@@ -5,42 +5,35 @@ import gameengine.physic.Dimension3D;
 import javafx.geometry.Point3D;
 
 /**
- * Class represents a hitbox.
+ * Class represents a hit box.
  * @author Main
  *
  */
 public class AABB {
 	private Point3D position;
 	private Dimension3D dimension;
-	
-	
 	public AABB(Point3D position, Dimension3D dimension) {
 		super();
 		this.position = position;
 		this.dimension = dimension;
 	}
-
-
 	public Point3D getPosition() {
 		return position;
 	}
-
-
 	public void setPosition(Point3D position) {
 		this.position = position;
 	}
-
-
 	public Dimension3D getDimension() {
 		return dimension;
 	}
-
-
 	public void setDimension(Dimension3D dimension) {
 		this.dimension = dimension;
 	}
-
-
+	/**
+	 * Verifying if the instance of the box is colliding with the given box.
+	 * @param box A AABB box.
+	 * @return true if the box is colliding, false otherwise.
+	 */
 	public boolean isCollide(AABB box) {
 		double box1X = this.getPosition().getX()*Constante.GRID_SIZE;
 		double box2X = box.getPosition().getX()*Constante.GRID_SIZE;

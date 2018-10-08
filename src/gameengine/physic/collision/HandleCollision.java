@@ -3,7 +3,7 @@ package gameengine.physic.collision;
 import gameengine.entities.GameObject;
 
 /**
- * 
+ * Class that define who collisions must be handle.
  * @author Main
  *
  */

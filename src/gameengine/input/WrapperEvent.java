@@ -15,7 +15,6 @@ public class WrapperEvent {
 		this.userEvent = userEvent;
 		this.keyCode = keyCode;
 	}
-	
 	public UserEvent getUserEvent() {
 		return userEvent;
 	}

@@ -1,5 +1,10 @@
 package gameengine.constante;
 
+/**
+ * Class who have all the constant.
+ * @author Main
+ *
+ */
 public class Constante {
 	public static final String RESOURCE_PATH = "/resources/";
 	public static final String LEVEL_TEXT_PATH = "/resources/lvl/txt/";

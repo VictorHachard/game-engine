@@ -40,13 +40,15 @@ public class Camera {
 	public void setGameObjectBinded(GameObject gameObjectBinded) {
 		this.gameObjectBinded = gameObjectBinded;
 	}
-	
 	public double getZoom() {
 		return zoom;
 	}
 	public void setZoom(double zoom) {
 		this.zoom = zoom;
 	}
+	/**
+	 * Update the positions of the camera.
+	 */
 	public void update() {
 		if(gameObjectBinded != null) {
 			this.position.setX(gameObjectBinded.getPosition().getX());

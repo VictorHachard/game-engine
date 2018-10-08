@@ -1,5 +1,10 @@
 package gameengine.world;
 
+/**
+ * Class that contain the level.
+ * @author Main
+ *
+ */
 public class GameWorld {
 	private Level level;
 

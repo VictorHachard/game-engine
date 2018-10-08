@@ -37,11 +37,11 @@ public class GameObject {
 	 */
 	private String type;
 	/**
-	 * 
+	 * The hit box of the object.
 	 */
 	private AABB hitbox;
 	/**
-	 * Correspond à la reference au lien dans l'objet du jeu.
+	 * The pointer that link the object to the game.
 	 */
 	private Object object;
 	public Double getzIndex() {
@@ -84,7 +84,6 @@ public class GameObject {
 		position = pos;
 		return this;
 	}
-	
 	/**
 	 * Setter to set the dimension of the object.
 	 * @param d A Dimension3D (double width, double height, double depth).
@@ -94,7 +93,6 @@ public class GameObject {
 		dimension = d;
 		return this;
 	}
-	
 	/**
 	 * Setter to set the texture of the object.
 	 * @param t A Texture.
@@ -104,7 +102,6 @@ public class GameObject {
 		texture = t;
 		return this;
 	}
-	
 	/**
 	 * Setter to set the velocity of the object.
 	 * @param v A Point2D (double x, double y).
@@ -114,7 +111,6 @@ public class GameObject {
 		velocity = v;
 		return this;
 	}
-	
 	/**
 	 * Setter to set the z index of the object.
 	 * @param v A Integer.
@@ -125,7 +121,7 @@ public class GameObject {
 		return this;
 	}
 	/**
-	 * Setter to set the hitbox of the object.
+	 * Setter to set the hit box of the object.
 	 * @param hitbox AABB.
 	 * @return The GameObject.
 	 */
@@ -133,8 +129,6 @@ public class GameObject {
 		this.hitbox = hitbox;
 		return this;
 	}
-
-	
 	/**
 	 * Setter to set the type of the object.
 	 * @param ty A name (String).
@@ -144,7 +138,6 @@ public class GameObject {
 		this.type = type;
 		return this;
 	}
-	
 	/**
 	 * Update the object (moving on it's own).
 	 */

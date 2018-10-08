@@ -9,7 +9,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- * 
+ * Class 
  */
 public abstract class GameApp extends Application {
 	private GameSetting setting;
@@ -23,14 +23,10 @@ public abstract class GameApp extends Application {
 		initSetting(setting);
 		initGameObject();
 		initGameWorld();
-		initLevel();
-
-		
+		initLevel();		
 		Camera camera = new Camera(setting);
 		initCamera(camera);
 		manager = new SceneManager(setting,camera,gameWorld);
-
-
 		enableInput();
 		initGameEngine();
 		initCollision();
@@ -58,7 +54,6 @@ public abstract class GameApp extends Application {
 	 * Permet d'initialiser les différentes manère de créer un gameObject.
 	 */
 	public void initGameObject() {}
-	
 	
 	/**
 	 * Create a game world.

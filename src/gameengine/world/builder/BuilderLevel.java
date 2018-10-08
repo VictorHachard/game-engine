@@ -13,10 +13,13 @@ import gameengine.entities.builder.WrapperGameObject;
 import gameengine.physic.Point2D;
 import gameengine.world.Level;
 
+/**
+ * class that build the level.
+ * @author Main
+ *
+ */
 public class BuilderLevel {
-	
 	public static List<WrapperGameObject> LST_WRAPPER_GAMEOBJECT = new ArrayList<>();
-	
 	
 	public static void addWrapperGameObject(WrapperGameObject w) {
 		LST_WRAPPER_GAMEOBJECT.add(w);
@@ -34,6 +37,13 @@ public class BuilderLevel {
 		l.setNomLevel(nomLevel);
 		return l;
 	}
+	/**
+	 * 
+	 * @param nomLevel String that is the name of the level.
+	 * @param fileName String the name og the file.
+	 * @param pas Integer. 
+	 * @return Level.
+	 */
 	public static Level buildLevel(String nomLevel , String fileName, Integer pas) {
 		Level l = buildLevel(nomLevel);
 		URL url = BuilderLevel.class.getResource(Constante.LEVEL_TEXT_PATH+fileName);
