@@ -77,8 +77,9 @@ public class GameObject {
 	public Object getObject() {
 		return object;
 	}
-	public void setObject(Object object) {
+	public GameObject with(Object object) {
 		this.object = object;
+		return this;
 	}
 	/**
 	 * Setter to set the position of the object.

@@ -47,7 +47,6 @@ public class ParticuleEngine {
 	 */
 	public void update() {
 		for (Emitter emitter : lstEmitter) {
-			System.out.println(lstEmitter.get(0).getLstParticule().size());
 			emitter.getLstParticule().addAll(emitter.emit(emitter.getPosition()));
 			for (Iterator<Particle> iterator = emitter.getLstParticule().iterator(); iterator.hasNext();) {
 				Particle p = (Particle) iterator.next();
