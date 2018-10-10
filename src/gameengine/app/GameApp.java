@@ -1,6 +1,7 @@
 package gameengine.app;
 
 import gameengine.core.GameEngine;
+import gameengine.ia.ManagerTask;
 import gameengine.input.Input;
 import gameengine.render.Camera;
 import gameengine.render.SceneManager;
@@ -21,7 +22,8 @@ public abstract class GameApp extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		setting = new GameSetting();
 		initSetting(setting);
-		initGameObject();
+		ManagerTask mt = new ManagerTask();
+		initGameObject(mt);
 		initGameWorld();
 		initLevel();		
 		Camera camera = new Camera(setting);
@@ -29,13 +31,13 @@ public abstract class GameApp extends Application {
 		manager = new SceneManager(setting,camera,gameWorld);
 		initUI();
 		enableInput();
-		initGameEngine();
+		initGameEngine(mt);
 		initCollision();
 		initParticle();
 		initTest();
 	}
-	
-	private void initGameEngine() {
+
+	private void initGameEngine(ManagerTask mt) {
 		gameEngine = new GameEngine(manager, gameWorld);
 	}
 	
@@ -54,7 +56,7 @@ public abstract class GameApp extends Application {
 	/**
 	 * Permet d'initialiser les différentes manère de créer un gameObject.
 	 */
-	public void initGameObject() {}
+	public void initGameObject(ManagerTask mt) {}
 	
 	/**
 	 * Create a game world.

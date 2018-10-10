@@ -3,6 +3,9 @@ package gameengine.physic.collision;
 import java.util.ArrayList;
 import java.util.List;
 
+import gameengine.entities.GameObject;
+import gameengine.world.GameWorld;
+
 /**
  * Class that handle collision.
  * @author Main
@@ -11,12 +14,17 @@ import java.util.List;
 public class CollisionManager {
 	private List<HandleCollision> lstHandleCollision = new ArrayList<>();
 	private List<Collision> lstCollision = new ArrayList<>();
+	private GameWorld gm;
+	
+	public CollisionManager(GameWorld gm) {
+		this.gm = gm;
+	}
 	
 	/**
 	 * Manage all collisions (add, manage, delete).
 	 * @param lstActualCollision A List<Collision>
 	 */
-	public void manageCollision(List<Collision> lstActualCollision) {
+	private void manageCollision(List<Collision> lstActualCollision) {
 		for (Collision collision : lstCollision) {
 			//handle existing collisions.
 			if(lstActualCollision.contains(collision)) {
@@ -62,5 +70,20 @@ public class CollisionManager {
 	}
 	public void addHandleCollision(HandleCollision hc) {
 		lstHandleCollision.add(hc);
+	}
+	public void update() {
+		List<GameObject> lstGa = gm.getLevel().getLstGameObject();
+		List<Collision> lstActualCollision = new ArrayList<>();
+		for (GameObject gameObject1 : lstGa) {
+			for (GameObject gameObject2 : lstGa) {
+				if(gameObject1 != gameObject2 && gameObject1.getHitbox() != null && gameObject2.getHitbox() != null && gameObject1.getzIndex() >0 && gameObject2.getzIndex()>0) {
+					if(gameObject1.getHitbox().isCollide(gameObject2.getHitbox())) {
+						Collision c =  new Collision(gameObject1, gameObject2);
+						lstActualCollision.add(c);
+					}
+				}
+			}
+		}
+		manageCollision(lstActualCollision);
 	}
 }

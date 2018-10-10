@@ -1,6 +1,8 @@
 package gameengine.entities;
 
 import gameengine.entities.texture.Texture;
+import gameengine.ia.ManagerTask;
+import gameengine.ia.Task;
 import gameengine.physic.Dimension3D;
 import gameengine.physic.Point2D;
 import gameengine.physic.collision.aabb.AABB;
@@ -45,8 +47,6 @@ public class GameObject {
 	 */
 	private Object object;
 	
-	
-	
 	public GameObject() {
 	}
 	public Double getzIndex() {
@@ -76,6 +76,11 @@ public class GameObject {
 	}
 	public Object getObject() {
 		return object;
+	}
+	public GameObject addTask(Task task) {
+		task.setGameObject(this);
+		ManagerTask.getManagerTask().addTask(task);
+		return this;
 	}
 	public GameObject with(Object object) {
 		this.object = object;
