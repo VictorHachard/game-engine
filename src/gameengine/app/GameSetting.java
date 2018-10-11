@@ -6,6 +6,15 @@ package gameengine.app;
  *
  */
 public class GameSetting {
+	private static GameSetting INSTANCE = null;
+	public static GameSetting getGameSetting() {
+		return INSTANCE;
+	}
+	public static GameSetting createGameSetting() {
+		INSTANCE = new GameSetting();
+		return getGameSetting();
+	}
+	
 	/**
 	 * Width of the window.
 	 */

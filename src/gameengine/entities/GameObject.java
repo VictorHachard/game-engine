@@ -1,7 +1,7 @@
 package gameengine.entities;
 
 import gameengine.entities.texture.Texture;
-import gameengine.ia.ManagerTask;
+import gameengine.ia.TaskManager;
 import gameengine.ia.Task;
 import gameengine.physic.Dimension3D;
 import gameengine.physic.Point2D;
@@ -77,11 +77,13 @@ public class GameObject {
 	public Object getObject() {
 		return object;
 	}
+	
 	public GameObject addTask(Task task) {
 		task.setGameObject(this);
-		ManagerTask.getManagerTask().addTask(task);
+		TaskManager.getTaskManager().addTask(task);
 		return this;
 	}
+	
 	public GameObject with(Object object) {
 		this.object = object;
 		return this;

@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 
 import gameengine.core.gameloop.VariableSteps;
 import gameengine.entities.GameObject;
-import gameengine.ia.ManagerTask;
+import gameengine.ia.TaskManager;
 import gameengine.physic.collision.Collision;
 import gameengine.physic.collision.CollisionManager;
 import gameengine.render.SceneManager;
@@ -42,7 +42,7 @@ public class GameEngine {
      * Methode gérant les updates du jeu.
      */
 	public void update() {
-		ManagerTask.getManagerTask().updateTask();
+		TaskManager.getTaskManager().updateTask();
     	cm.update();
 		gameWorld.getLevel().getLstGameObject().forEach(GameObject::update);
 		sceneManager.getParticuleEngine().update();

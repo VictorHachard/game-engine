@@ -4,9 +4,7 @@ public class WrapperGameObject {
 	private String id;
 	private BuilderGameObjectFactory builder;
 	
-	
 	public WrapperGameObject(String id, BuilderGameObjectFactory builder) {
-		super();
 		this.id = id;
 		this.builder = builder;
 	}

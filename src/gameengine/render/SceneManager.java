@@ -32,14 +32,13 @@ public class SceneManager {
 	private GraphicsContext graphicContext; //L'affichage du monde.
 	private Camera camera;
 	List<GameObject> lstGameObjectToRender;
-	private GameSetting setting;
 	private ParticuleEngine particuleEngine;
 	private GameWorld gameWorld;
-	public SceneManager(GameSetting setting,Camera camera,GameWorld world) {
-		gameWorld = world;
-		this.setting = setting;
+	private GameSetting setting;
+	public SceneManager(GameWorld world) {
+		setting = GameSetting.getGameSetting();
 		stage = new Stage();
-		this.camera = camera;
+		this.gameWorld = world;
 		particuleEngine = new ParticuleEngine(world.getLevel());
 		lstGameObjectToRender = new ArrayList<>();
 		root = new Pane();

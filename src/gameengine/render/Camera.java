@@ -12,14 +12,11 @@ import gameengine.physic.Point2D;
 public class Camera {
 	private Point2D position;
 	private GameObject gameObjectBinded;
-	private GameSetting gameSetting;
 	private double zoom = 1;
-	public Camera(GameSetting gameSetting,Point2D pos){
-		this.gameSetting = gameSetting;
+	public Camera(Point2D pos){
 		position = pos;
 	}
-	public Camera(GameSetting gameSetting){
-		this.gameSetting = gameSetting;
+	public Camera(){
 		position = new Point2D(0.0,0.0);
 	}
 	public Point2D getPosition() {
@@ -27,12 +24,6 @@ public class Camera {
 	}
 	public void setPosition(Point2D position) {
 		this.position = position;
-	}
-	public GameSetting getGameSetting() {
-		return gameSetting;
-	}
-	public void setGameSetting(GameSetting gameSetting) {
-		this.gameSetting = gameSetting;
 	}
 	public GameObject getGameObjectBinded() {
 		return gameObjectBinded;

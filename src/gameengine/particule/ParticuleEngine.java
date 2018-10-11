@@ -15,7 +15,6 @@ public class ParticuleEngine {
 	private List<Emitter> lstEmitter = new ArrayList<>();
 	private Level level ;
 	public ParticuleEngine(Level level) {
-		super();
 		this.level = level;
 	}
 	/**

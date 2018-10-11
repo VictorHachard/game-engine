@@ -6,37 +6,36 @@ import java.util.List;
 
 import gameengine.entities.GameObject;
 
-public class ManagerTask {
-	List<Task> lstTask = new ArrayList<>();
+public class TaskManager {
+	private static TaskManager INSTANCE = null;
+	public static TaskManager getTaskManager() {
+		return INSTANCE;
+	}
+	public static TaskManager createTaskManager() {
+		INSTANCE = new TaskManager();
+		return getTaskManager();
+	}
+	private List<Task> lstTask = new ArrayList<>();
 	
 	/**
-	 * P = T1 
-	 * p = T2
-	 * p2 = T3
-	 * p3 = T1
-	 * P  = TF
 	 * 
-	 * 
+	 * @param t
 	 */
-	
-	
-	private static ManagerTask INSTANCE =null;
-	
-	public static ManagerTask getManagerTask() {
-		if (INSTANCE == null) {
-			return new ManagerTask();
-		} else {
-			return INSTANCE;
-		}
-	}
-	
 	public void addTask(Task t) {
 		lstTask.add(t);
 	}
-	
+	/**
+	 * Set the state of a task to PAUSE.
+	 * @param t The task to set on PAUSE.
+	 */
 	public void pause(Task t) {
 		t.setStat(StateTask.PAUSE);
 	}
+	/**
+	 * Return a the list of task of a game object.
+	 * @param g A game object.
+	 * @return List<Task> Of the game object g.
+	 */
 	public List<Task> getLstTask(GameObject g){
 		List<Task> lstTask = new ArrayList<>();
 		for (Task task : lstTask) {
@@ -46,7 +45,9 @@ public class ManagerTask {
 		}
 		return lstTask;
 	}
-	
+	/**
+	 * update all the task in terms of the state of each task.
+	 */
 	public void updateTask() {
 		for (Iterator<Task> iterator = lstTask.iterator(); iterator.hasNext();) {
 			Task task = (Task) iterator.next();
@@ -74,3 +75,4 @@ public class ManagerTask {
 		}
 	}
 }
+

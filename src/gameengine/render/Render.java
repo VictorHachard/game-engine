@@ -2,6 +2,7 @@ package gameengine.render;
 
 import java.util.List;
 
+import gameengine.app.GameSetting;
 import gameengine.constante.Constante;
 import gameengine.entities.GameObject;
 import gameengine.particule.Particle;
@@ -29,8 +30,8 @@ public class Render {
 			context.setFill(gameObject.getTexture().getImagePattern());
 		}
 		double zoom = camera.getZoom();
-		double offsetX = (-camera.getPosition().getX()*Constante.GRID_SIZE-camera.getGameObjectBinded().getDimension().getWidth()/2)  *zoom +  camera.getGameSetting().getWidth()/2;
-		double offsetY = (-camera.getPosition().getY()*Constante.GRID_SIZE-camera.getGameObjectBinded().getDimension().getHeight()/2) *zoom + camera.getGameSetting().getHeight()/2;
+		double offsetX = (-camera.getPosition().getX()*Constante.GRID_SIZE-camera.getGameObjectBinded().getDimension().getWidth()/2)  *zoom +  GameSetting.getGameSetting().getWidth()/2;
+		double offsetY = (-camera.getPosition().getY()*Constante.GRID_SIZE-camera.getGameObjectBinded().getDimension().getHeight()/2) *zoom + GameSetting.getGameSetting().getHeight()/2;
 		double posX= (gameObject.getPosition().getX()*Constante.GRID_SIZE)*zoom+offsetX;
 		double posY= (gameObject.getPosition().getY()*Constante.GRID_SIZE)*zoom+offsetY;
 		context.fillRect(posX,posY,
@@ -50,8 +51,8 @@ public class Render {
 			context.setGlobalBlendMode(p.getBlendMode());
 			context.setFill(p.getColor());
 			double zoom = camera.getZoom();
-			double offsetX = (-camera.getPosition().getX()*Constante.GRID_SIZE-camera.getGameObjectBinded().getDimension().getWidth()/2)  *zoom +  camera.getGameSetting().getWidth()/2;
-			double offsetY = (-camera.getPosition().getY()*Constante.GRID_SIZE-camera.getGameObjectBinded().getDimension().getHeight()/2) *zoom + camera.getGameSetting().getHeight()/2;
+			double offsetX = (-camera.getPosition().getX()*Constante.GRID_SIZE-camera.getGameObjectBinded().getDimension().getWidth()/2)  *zoom +  GameSetting.getGameSetting().getWidth()/2;
+			double offsetY = (-camera.getPosition().getY()*Constante.GRID_SIZE-camera.getGameObjectBinded().getDimension().getHeight()/2) *zoom + GameSetting.getGameSetting().getHeight()/2;
 			double posX= (p.getPosition().getX()*Constante.GRID_SIZE+Constante.GRID_SIZE/2)*zoom+offsetX;
 			double posY= (p.getPosition().getY()*Constante.GRID_SIZE+Constante.GRID_SIZE/2)*zoom+offsetY;
 			context.fillOval(posX, posY, p.getRadius(), p.getRadius()*zoom);

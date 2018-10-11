@@ -1,7 +1,8 @@
 package gameengine.app;
 
+import gameengine.builder.Builder;
 import gameengine.core.GameEngine;
-import gameengine.ia.ManagerTask;
+import gameengine.ia.TaskManager;
 import gameengine.input.Input;
 import gameengine.render.Camera;
 import gameengine.render.SceneManager;
@@ -13,50 +14,49 @@ import javafx.stage.Stage;
  * Class 
  */
 public abstract class GameApp extends Application {
-	private GameSetting setting;
 	private SceneManager manager;
 	private GameWorld gameWorld;
 	private GameEngine gameEngine;
-	private Input input;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		setting = new GameSetting();
-		initSetting(setting);
-		ManagerTask mt = new ManagerTask();
-		initGameObject(mt);
+		Builder.createSingleton();
+		initSetting(GameSetting.getGameSetting());
+		initGameObject();
 		initGameWorld();
-		initLevel();		
-		Camera camera = new Camera(setting);
+		initLevel();	
+		Camera camera = new Camera();
 		initCamera(camera);
-		manager = new SceneManager(setting,camera,gameWorld);
+		manager = new SceneManager(gameWorld);
+		manager.setCamera(camera);
 		initUI();
 		enableInput();
-		initGameEngine(mt);
+		initGameEngine(TaskManager.getTaskManager());
 		initCollision();
 		initParticle();
 		initTest();
 	}
 
-	private void initGameEngine(ManagerTask mt) {
+	private void initGameEngine(TaskManager mt) {
 		gameEngine = new GameEngine(manager, gameWorld);
 	}
 	
 	public void initTest() {}
 	public void initLevel() {}
-	public void initCamera(Camera camera) {}
-	public void initParticle() {}
-	public void initInput() {}
-	public void initCollision() {}
-	public void initUI() {}
+	public abstract void initCamera(Camera camera);
+	public abstract void initParticle();
+	public abstract void initInput();
+	public abstract void initCollision();
+	public abstract void initUI();
+	public abstract void initSetting(GameSetting s);
 	public void enableInput() {
-		input = new Input(manager.getScene());
+		Input.getInput().setScene(manager.getScene());
 		initInput();
-		input.manageEvent();
+		Input.getInput().manageEvent();
 	}
 	/**
 	 * Permet d'initialiser les différentes manère de créer un gameObject.
 	 */
-	public void initGameObject(ManagerTask mt) {}
+	public void initGameObject() {}
 	
 	/**
 	 * Create a game world.
@@ -78,8 +78,7 @@ public abstract class GameApp extends Application {
 	}
 
 	public Input getInput() {
-		return input;
+		return Input.getInput();
 	}
-	public abstract void initSetting(GameSetting setting);
 	
 }
