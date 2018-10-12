@@ -12,6 +12,10 @@ public class GameSetting {
 	}
 	public static GameSetting createGameSetting() {
 		INSTANCE = new GameSetting();
+		//Default setting
+		INSTANCE.title = "GameEngine";
+		INSTANCE.height = 480;
+		INSTANCE.width = 720;
 		return getGameSetting();
 	}
 	

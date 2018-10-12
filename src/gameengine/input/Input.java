@@ -7,6 +7,7 @@ import java.util.List;
 import gameengine.app.GameSetting;
 import gameengine.ia.TaskManager;
 import gameengine.input.exception.InputNameAlreadyExistException;
+import gameengine.render.SceneManager;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
@@ -32,12 +33,8 @@ public class Input {
 	public Input() {
 		lstEvent = new ArrayList<>();
 		lstEventCurrent = new ArrayList<>();
+		this.scene = SceneManager.getSceneManager().getScene();
 	}
-	
-	public void setScene(Scene scene) {
-		this.scene = scene;
-	}
-
 	/**
 	 * Add a UserEvent link to a keyCode in an list.
 	 * @param user A UserEvent (String user).

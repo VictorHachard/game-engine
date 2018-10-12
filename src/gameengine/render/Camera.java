@@ -1,6 +1,5 @@
 package gameengine.render;
 
-import gameengine.app.GameSetting;
 import gameengine.entities.GameObject;
 import gameengine.physic.Point2D;
 

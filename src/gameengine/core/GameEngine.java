@@ -14,11 +14,9 @@ import gameengine.world.GameWorld;
 
 public class GameEngine {
 	private  VariableSteps v;
-	private SceneManager sceneManager;
 	private GameWorld gameWorld;
 	private CollisionManager cm;
-	public GameEngine(SceneManager sc , GameWorld gw) {
-		sceneManager = sc;
+	public GameEngine(GameWorld gw) {
 		gameWorld = gw;
 		cm = new CollisionManager(gameWorld);
         Consumer<Float> updater = secondsElapsed -> update();
@@ -45,8 +43,8 @@ public class GameEngine {
 		TaskManager.getTaskManager().updateTask();
     	cm.update();
 		gameWorld.getLevel().getLstGameObject().forEach(GameObject::update);
-		sceneManager.getParticuleEngine().update();
-    	sceneManager.getCamera().update();
+		SceneManager.getSceneManager().getParticuleEngine().update();
+		SceneManager.getSceneManager().getCamera().update();
 
 	}
 	
@@ -58,6 +56,6 @@ public class GameEngine {
 	 * Méthode permettant de rendre la scène.
 	 */
     public void render() {
-    	sceneManager.drawScene();
+    	SceneManager.getSceneManager().drawScene();
     }
 }

@@ -18,11 +18,24 @@ public class TaskManager {
 	private List<Task> lstTask = new ArrayList<>();
 	
 	/**
-	 * 
-	 * @param t
+	 * Add a task to be handle by the task manager.
+	 * @param t The task handle.
 	 */
-	public void addTask(Task t) {
-		lstTask.add(t);
+	public void addTask(Task... t) {
+		for (Task ts : t) {
+			lstTask.add(ts);	
+		}
+	}
+	/**
+	 * Remove a task to the task manager.
+	 * @param t The task to remove.
+	 */
+	public void removeTask(Task... t) {
+		for (Task ts : t) {
+			if (lstTask.contains(ts)) {
+				lstTask.remove(ts);
+			}
+		}
 	}
 	/**
 	 * Set the state of a task to PAUSE.

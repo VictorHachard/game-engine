@@ -23,13 +23,15 @@ public abstract class GameApp extends Application {
 		initSetting(GameSetting.getGameSetting());
 		initGameObject();
 		initGameWorld();
-		initLevel();	
+		initLevel();
 		Camera camera = new Camera();
 		initCamera(camera);
-		manager = new SceneManager(gameWorld);
+		manager = Builder.createSceneManager(gameWorld);
 		manager.setCamera(camera);
 		initUI();
-		enableInput();
+		Builder.createInput();
+		initInput();
+		Input.getInput().manageEvent();
 		initGameEngine(TaskManager.getTaskManager());
 		initCollision();
 		initParticle();
@@ -37,7 +39,7 @@ public abstract class GameApp extends Application {
 	}
 
 	private void initGameEngine(TaskManager mt) {
-		gameEngine = new GameEngine(manager, gameWorld);
+		gameEngine = new GameEngine(gameWorld);
 	}
 	
 	public void initTest() {}
@@ -48,11 +50,6 @@ public abstract class GameApp extends Application {
 	public abstract void initCollision();
 	public abstract void initUI();
 	public abstract void initSetting(GameSetting s);
-	public void enableInput() {
-		Input.getInput().setScene(manager.getScene());
-		initInput();
-		Input.getInput().manageEvent();
-	}
 	/**
 	 * Permet d'initialiser les différentes manère de créer un gameObject.
 	 */
@@ -70,7 +67,7 @@ public abstract class GameApp extends Application {
 	}
 
 	public SceneManager getManager() {
-		return manager;
+		return SceneManager.getSceneManager();
 	}
 
 	public GameEngine getGameEngine() {
