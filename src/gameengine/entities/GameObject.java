@@ -162,6 +162,8 @@ public class GameObject {
 			this.hitbox.setPosition(new Point3D(this.position.getX(), this.position.getY(), zIndex));
 		}
  	}
-
-	
+	public GameObject copy() {
+    	return new GameObject()
+    			.at(this.getPosition()).with(this.hitbox).with(this.zIndex).with(this.object);
+    }
 }

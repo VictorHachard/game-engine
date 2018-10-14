@@ -16,7 +16,15 @@ public class Point2D{
 		this.y = y;
 	}
 	
-    public Double getX() {
+    public Point2D() {
+		// TODO Auto-generated constructor stub
+	}
+    public void setPoint2D(Point2D p) {
+    	this.x = p.getX();
+    	this.y = p.getY();
+    }
+    
+	public Double getX() {
 		return x;
 	}
 
@@ -271,7 +279,9 @@ public class Point2D{
         return crossProduct(vector.getX(), vector.getY());
     }
 
-
+    public Point2D copy() {
+    	return new Point2D(x,y);
+    }
     @Override
 	public int hashCode() {
 		final int prime = 31;

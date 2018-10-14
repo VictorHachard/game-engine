@@ -68,12 +68,14 @@ public class BuilderLevel {
 				character = fr.read();
 			}
 			String[] line = sb.toString().split("\\n");
-			
+
+			l.setY(line.length);
 			// Start parsing of the file to put at good position GameObject
 			for (double y = 0; y < line.length ; y++ ) {
 				String lineToWork = line[(int)y].replaceAll("\n", "").replaceAll("\r", "");
 				lineToWork = lineToWork.substring(0,lineToWork.length()-1);
 				String[] lstStringGameObject = lineToWork.split("\\|");
+				l.setX(lstStringGameObject.length); //ici c degeux
 				for (double x = 0 ; x < lstStringGameObject.length; x++) {
 					String block = lstStringGameObject[(int)x]; // on recupere le bon block
 					for (WrapperGameObject wrapperGameObject : LST_WRAPPER_GAMEOBJECT) {

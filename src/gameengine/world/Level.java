@@ -15,6 +15,8 @@ import gameengine.entities.GameObject;
 public class Level {
 	List<GameObject> lstGameObject;
 	String nomLevel;
+	private int x;
+	private int y;
 	public Level() {
 		lstGameObject = new ArrayList<>();
 	}
@@ -25,6 +27,12 @@ public class Level {
 		this.nomLevel = nomLevel;
 	}
 	
+	public void setX(int x) {
+		this.x = x;
+	}
+	public void setY(int y) {
+		this.y = y;
+	}
 	/**
 	 * Add a game object to the array.
 	 * @param g a Game(s) object(s).
@@ -35,6 +43,12 @@ public class Level {
 		 }
 	}
 	
+	public int getX() {
+		return x;
+	}
+	public int getY() {
+		return y;
+	}
 	/**
 	 * Remove a game object from the array.
 	 * @param g a Game(s) object(s).
