@@ -7,29 +7,24 @@ import gameengine.entities.GameObject;
 import gameengine.physic.Point2D;
 import gameengine.physic.collision.aabb.AABB;
 import gameengine.world.GameWorld;
-import javafx.geometry.Point3D;
 
 public class PathFinding {
-	
-	Cell[][] lstAllCells;
-	
-	/**
-	 * O O O X O O O
-	 * O D O X O O A
-	 * O O O O O O
-	 */
-	
+	Cell[][] lstAllCells;	
 	List<Cell> lstOpen = new ArrayList<>();
 	List<Cell> lstClose = new ArrayList<>();
     GameObject ga;
 	GameWorld gw;
+	int height;
+	int width;
 	
 	public PathFinding(GameObject gameObject,Point2D goal,GameWorld gw) {
 		this.ga = gameObject;
 		this.gw = gw;
-		lstAllCells = new Cell[gw.getLevel().getY()][gw.getLevel().getX()];
-		for (double i = 0; i < gw.getLevel().getY(); i++) { //x
-			for (double j = 0; j < gw.getLevel().getX(); j++) { //y
+		height = gw.getLevel().getY();
+		width = gw.getLevel().getX();
+		lstAllCells = new Cell[height][width];
+		for (double i = 0; i < height; i++) {
+			for (double j = 0; j < width; j++) {
 				lstAllCells[(int)i][(int)j] = new Cell((Math.abs(ga.getPosition().getX() - goal.getX()) + Math.abs(ga.getPosition().getY() - goal.getY()))
 						,isValide(gameObject,j,i)
 						,(int)i,(int)j);
@@ -136,39 +131,28 @@ public class PathFinding {
 		System.out.println();
 		int x = c.getX();
 		int y = c.getY();
-		System.out.println("sdfsdfsdfsdfsdfds" + x + " " + y+"  -- " +lstAllCells[x].length+ "" + gw.getLevel().getX()) ;
 		List<Cell> lst = new ArrayList<>();
-		if((x+1<gw.getLevel().getY()) &&
-				
-				!lstAllCells[x+1][y].getCelluleBloquante() &&
-				!lstClose.contains(lstAllCells[x+1][y]))
+		if((x+1<height) && !lstAllCells[x+1][y].getCelluleBloquante() && !lstClose.contains(lstAllCells[x+1][y])) {
 			lst.add(lstAllCells[x+1][y]);
-		if((x-1>=0) && !lstAllCells[x-1][y].getCelluleBloquante() && !lstClose.contains(lstAllCells[x-1][y]) )
+		} if((x-1>=0) && !lstAllCells[x-1][y].getCelluleBloquante() && !lstClose.contains(lstAllCells[x-1][y]) ) {
 			lst.add(lstAllCells[x-1][y]);
-		if((x+1<gw.getLevel().getY()) && (y+1<gw.getLevel().getX()) && !lstAllCells[x+1][y+1].getCelluleBloquante() && !lstClose.contains(lstAllCells[x+1][y+1])) {
+		} if((x+1<height) && (y+1<width) && !lstAllCells[x+1][y+1].getCelluleBloquante() && !lstClose.contains(lstAllCells[x+1][y+1])) {
 			lst.add(lstAllCells[x+1][y+1]);
 			lstAllCells[x+1][y+1].setIsDiagonal(true);
-		}
-
-		if((x+1<gw.getLevel().getY())&& (y-1>=0) && !lstAllCells[x+1][y-1].getCelluleBloquante() && !lstClose.contains(lstAllCells[x+1][y-1]) )	{
+		} if((x+1<height)&& (y-1>=0) && !lstAllCells[x+1][y-1].getCelluleBloquante() && !lstClose.contains(lstAllCells[x+1][y-1]) )	{
 			lst.add(lstAllCells[x+1][y-1]);
 			lstAllCells[x+1][y-1].setIsDiagonal(true);
-		}
-			
-		if((x-1>=0) && (y-1>=0) && !lstAllCells[x-1][y-1].getCelluleBloquante() && !lstClose.contains(lstAllCells[x-1][y-1]))	{
+		} if((x-1>=0) && (y-1>=0) && !lstAllCells[x-1][y-1].getCelluleBloquante() && !lstClose.contains(lstAllCells[x-1][y-1]))	{
 			lst.add(lstAllCells[x-1][y-1]);
 			lstAllCells[x-1][y-1].setIsDiagonal(true);
-		}
-			
-		if((x-1>=0) && (y+1<gw.getLevel().getX()) && !lstAllCells[x-1][y+1].getCelluleBloquante() && !lstClose.contains(lstAllCells[x-1][y+1]))	{
+		} if((x-1>=0) && (y+1<width) && !lstAllCells[x-1][y+1].getCelluleBloquante() && !lstClose.contains(lstAllCells[x-1][y+1]))	{
 			lst.add(lstAllCells[x-1][y+1]);
 			lstAllCells[x-1][y+1].setIsDiagonal(true);
-		}
-
-		if((y-1>=0) && !lstAllCells[x][y-1].getCelluleBloquante() && !lstClose.contains(lstAllCells[x][y-1]))
+		} if((y-1>=0) && !lstAllCells[x][y-1].getCelluleBloquante() && !lstClose.contains(lstAllCells[x][y-1])) {
 			lst.add(lstAllCells[x][y-1]);
-		if((y+1<gw.getLevel().getX()) && !lstAllCells[x][y+1].getCelluleBloquante() && !lstClose.contains(lstAllCells[x][y+1]) )
+		} if((y+1<width) && !lstAllCells[x][y+1].getCelluleBloquante() && !lstClose.contains(lstAllCells[x][y+1]) ) {
 			lst.add(lstAllCells[x][y+1]);	
+		}
 		for (Cell cell : lst) {
 			cell.setParent(c);
 		}
@@ -179,9 +163,7 @@ public class PathFinding {
 		return Math.abs(goalCell.getX() - targetCell.getX()) + Math.abs(goalCell.getY() - targetCell.getY());
 	}
 	
-	
 	private void findG(Cell cell) {
-		
 		double g = 0;
 		if(cell.getIsDiagonal())
 			g = 14;
