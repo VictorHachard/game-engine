@@ -20,29 +20,32 @@ public class PathFinding {
 	public PathFinding(GameObject gameObject,Point2D goal,GameWorld gw) {
 		this.ga = gameObject;
 		this.gw = gw;
-		height = gw.getLevel().getY();
-		width = gw.getLevel().getX();
+		height = gw.getLevel().getHeight();
+		width = gw.getLevel().getWidth();
 		lstAllCells = new Cell[height][width];
 		for (double i = 0; i < height; i++) {
 			for (double j = 0; j < width; j++) {
-				lstAllCells[(int)i][(int)j] = new Cell((Math.abs(ga.getPosition().getX() - goal.getX()) + Math.abs(ga.getPosition().getY() - goal.getY()))
-						,isValide(gameObject,j,i)
+				lstAllCells[(int)i][(int)j] =
+						new Cell((Math.abs(ga.getPosition().getX() - goal.getX()) + Math.abs(ga.getPosition().getY() - goal.getY()))
+						,isCollide(gameObject,j,i)
 						,(int)i,(int)j);
-				
 			}
 		}
 		List<Cell> lstGoodPath = estimatePath(goal);
 		System.out.println(lstGoodPath.size());
-		for (Cell tt : lstGoodPath) {
-			System.out.println(tt.toString());
-		}
+		//for (Cell tt : lstGoodPath) {
+		//	System.out.println(tt.toString());
+		//}
 	}
+	
+	/**
+	 * 
+	 * @param goal
+	 * @return
+	 */
 	private List<Cell> estimatePath(Point2D goal) {
-		
-		//Départ
-		Point2D depart = ga.getPosition().copy();
-		AABB box = ga.getHitbox();
-		Cell currentCell= lstAllCells[(int) Math.round(depart.getY())][(int) Math.round(depart.getX())];
+		Point2D start = ga.getPosition().copy();
+		Cell currentCell= lstAllCells[(int) Math.round(start.getY())][(int) Math.round(start.getX())];
 		Cell goalCell = lstAllCells[(int) Math.round(goal.getY())][(int) Math.round(goal.getX())];
 		currentCell.setG(0.0);
 		lstOpen.add(currentCell);
@@ -54,15 +57,14 @@ public class PathFinding {
 					lstGoodPath.add(cell);
 					return construcGoodPath(cell,lstGoodPath);
 				}
-				cell.setH(findH(cell,goalCell));
+				findH(cell,goalCell);
 				findG(cell);
 			}
 			if(temp.isEmpty()) {
 				currentCell = currentCell.getParent();
 			} else {
-				lstOpen.addAll(temp);
-				// on compare les f;
-				double minF = 100000000;
+				addOpen(temp);
+				double minF = temp.get(0).getF();
 				Cell cellWithMinF = temp.get(0);
 				for (Cell cell : temp) {
 					if(minF >cell.getF()) {
@@ -85,13 +87,28 @@ public class PathFinding {
 		} return null;
 	}
 	
+	/**
+	 * Add the cell from the list if the not already contain in the open list.
+	 * @param l The list to add.
+	 */
+	private void addOpen(List<Cell> l) {
+		for (Cell cell : l) {
+			if (!lstOpen.contains(cell)) {
+				lstOpen.add(cell);
+			}
+		}
+	}
 	
+	/**
+	 * Draw the list of all cell.
+	 * @param goal
+	 */
 	public void dessinerMap(Cell goal) {
+		System.out.println("******************************");
 		System.out.println("liste open size ="+this.lstOpen.size());
 		System.out.println(this.lstOpen.toString());
 		System.out.println("liste close size ="+this.lstClose.size());
 		System.out.println(this.lstClose.toString());
-		
 		for (Cell[] cells : lstAllCells) {
 			for (Cell cell : cells) {
 				String s = "";
@@ -110,8 +127,16 @@ public class PathFinding {
 			}
 			System.out.println();
 		}
+		System.out.println("******************************");
+		System.out.println("");
 	}
 	
+	/**
+	 * Find the path from parent cell.
+	 * @param c
+	 * @param cells
+	 * @return List<Cell> The solution list of deplacement to find the destination.
+	 */
 	private List<Cell> construcGoodPath(Cell c, List<Cell> cells) {
 		if(c.getParent() !=null)
 			cells.add(c.getParent());
@@ -127,8 +152,13 @@ public class PathFinding {
 		}
 		return cells;
 	}
+	
+	/**
+	 * Find the possible 8 adjancent cell from c. 
+	 * @param c The cell.
+	 * @return List<Cell> A cell list that complet all the condition : need to be in the lstAllCells, need to be not contain in the lstClose, and need to be free to move in.
+	 */
 	private List<Cell> findAdjacent(Cell c){
-		System.out.println();
 		int x = c.getX();
 		int y = c.getY();
 		List<Cell> lst = new ArrayList<>();
@@ -159,10 +189,20 @@ public class PathFinding {
 		return lst;
 	}
 	
-	private int findH(Cell targetCell,Cell goalCell) {
-		return Math.abs(goalCell.getX() - targetCell.getX()) + Math.abs(goalCell.getY() - targetCell.getY());
+	/**
+	 * Find the heuristic distance from the targetCell and the goalCell.
+	 * @param targetCell
+	 * @param goalCell
+	 */
+	private void findH(Cell targetCell, Cell goalCell) {
+		double h = Math.abs(goalCell.getX() - targetCell.getX()) + Math.abs(goalCell.getY() - targetCell.getY());
+		targetCell.setH(h);
 	}
 	
+	/**
+	 * Find the coast of all the deplacement for the cell and set it.
+	 * @param cell
+	 */
 	private void findG(Cell cell) {
 		double g = 0;
 		if(cell.getIsDiagonal())
@@ -186,6 +226,11 @@ public class PathFinding {
 		}
 	}
 	
+	/**
+	 * Find if diagonal
+	 * @param c
+	 * @return
+	 */
 	private double findGParentOfParent(Cell c) {
 		Cell parent = c.getParent().getParent();
 		int delta = Math.abs(parent.getX()-c.getX()) + Math.abs(parent.getY() - c.getY());
@@ -197,15 +242,11 @@ public class PathFinding {
 	}
 	
 	/**
-	 * Verifie si le ga collide avec un ga du gw
-	 * @param ga
-	 * @return
+	 * Verifying if the game object is colliding with something in the world.
+	 * @param ga The game world that need to be verifying.
+	 * @return true is there is a collision, false otherwise.
 	 */
-	private boolean isValide(GameObject ga,double x,double y) {
-		//verifier par hors map
-		
-		//verifier hitbox
-
+	private boolean isCollide(GameObject ga,double x,double y) {
 		for (GameObject gas : gw.getLevel().getLstGameObject()) {
 			if (gas.getHitbox() != null && gas.getzIndex().equals(ga.getzIndex()) && gas.getPosition().equals(new Point2D(x,y))) {
 				return true;
@@ -213,6 +254,12 @@ public class PathFinding {
 		} 
 		return false;
 	} 
+	/**
+	 * Verifying if the actual cell is the destination cell.
+	 * @param destination The destination cell.
+	 * @param actual The actual cell.
+	 * @return true the actual cell is the same of the destination one, false otherwise.
+	 */
 	private boolean isDestination(Cell destination, Cell actual) {
 		return destination.equals(actual);
 	}
