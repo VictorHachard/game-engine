@@ -1,13 +1,13 @@
 package gameengine.ia.pathFinding;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
+
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
 import gameengine.entities.GameObject;
+import gameengine.ia.Goal;
 import gameengine.physic.Point2D;
 import gameengine.world.GameWorld;
 
@@ -36,9 +36,14 @@ public class PathFinding {
 		Cell goalCell = lstAllCells[(int) Math.round(goal.getY())][(int) Math.round(goal.getX())];
 		Cell currentCell= lstAllCells[(int) Math.round(start.getY())][(int) Math.round(start.getX())];
 		
+		currentCell.setG(0.0);
 		List<Cell> closeList = estimatePath(goalCell, currentCell);
+		
 		List<Cell>lstGoodPath =new ArrayList<>();
-		lstGoodPath = construcGoodPath(closeList.get(closeList.size()-1),lstGoodPath);
+		if(!closeList.isEmpty()) {
+			lstGoodPath = construcGoodPath(closeList.get(closeList.size()-1), lstGoodPath);			
+		}
+		
 		System.out.println(lstGoodPath.size());
 		for (Cell tt : lstGoodPath) {
 			System.out.println(tt.toString());
@@ -52,85 +57,56 @@ public class PathFinding {
 	 * @return
 	 */
 	private List<Cell> estimatePath(Cell goalCell, Cell currentCell) {
-		currentCell.setG(0.0);
 		List<Cell>lstOpen = new ArrayList<>();
 		List<Cell>lstClose = new ArrayList<>();
-		Map<Cell,Cell> mEgalite = new HashMap<>();
-		List<Cell>lstCellCurrent = new ArrayList<>();
-		lstCellCurrent.add(currentCell);
 		lstOpen.add(currentCell);
-		List<Cell> lstAlreadyDetected = new ArrayList<>();
-		
 		while(!lstOpen.isEmpty()) {
-			for (Iterator<Cell> iterator = lstCellCurrent.iterator(); iterator.hasNext();) {
-				System.out.println(lstCellCurrent.size());
-				Cell cellCurrentN = (Cell) iterator.next();
-				List<Cell> temp = findAdjacent(cellCurrentN, lstClose);
-				System.out.println("cellcourante"+cellCurrentN);
-				for (Cell cell : temp) {
-					if(isDestination(cell, goalCell)) {
-						System.out.println("lA FINNNNN");
-						lstClose.add(cell);
-						return lstClose;
-					}
-					findH(cell,goalCell);
-					cell.setG(cell.getParent().getG());
-				}
-				
-				
-				if(temp.isEmpty()) {
-					System.out.println("pas de solution");
-					if(lstAlreadyDetected.contains(cellCurrentN)) {
-						iterator.remove();
-					}
-					
-					if(cellCurrentN.getParent() != null && !lstAlreadyDetected.contains(cellCurrentN))
+			
+			java.util.Collections.sort(lstOpen, new Comparator<Cell>() {
+				@Override
+				public int compare(Cell o1, Cell o2) {
+					if(o1.getF()<o2.getF())
 					{
-						lstAlreadyDetected.add(cellCurrentN);
-						int inde = lstCellCurrent.lastIndexOf(cellCurrentN);
-						lstCellCurrent.set(inde, cellCurrentN.getParent());
-						lstClose.add(cellCurrentN);
+						return -1;
+					}else if(o1.getF()==o2.getF()) {
+						return 0;
 					}
-
-					
-
-
-				} else {
-					addOpen(temp, lstOpen);
-					double minF = temp.get(0).getF();
-					Cell cellWithMinF = temp.get(0);
-					for (Cell cell : temp) {
-						if(minF >cell.getF()) {
-							minF = cell.getF();  
-							cellWithMinF = cell;
-						} else if(minF == cell.getF() && cell != cellWithMinF) {
-							
-							mEgalite.put(cellCurrentN,cell); 
-
-							System.out.println("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
-						}
-					}
-					lstClose.add(cellCurrentN);
-					lstOpen.remove(cellCurrentN);
-					int inde = lstCellCurrent.lastIndexOf(cellCurrentN);
-					lstCellCurrent.set(inde, cellWithMinF);
-					
-					
-					System.out.println("estimate cell"+cellWithMinF.toString2());
+					return 1;
 				}
+			});
+			System.out.println(lstOpen.size());
+			Cell current = lstOpen.get(0);
+			
+			System.out.println("current"+current.toString2());
+			if(isDestination(current, goalCell)) {
+				lstClose.add(current);
+				return lstClose;
 			}
-			if(!mEgalite.isEmpty()) {
-				for (Entry<Cell, Cell> cell : mEgalite.entrySet()) {
-					addCurrent(cell.getValue(), lstCellCurrent);
+			
+			List<Cell> temp = findAdjacent(current, lstClose);
+			for (Cell cell : temp) {
+				
+				if((lstClose.contains(cell) && cell.getF() < current.getF()) || (lstOpen.contains(cell) && cell.getF()< current.getF())) {
+					
+				}else {
+
+					findH(cell,goalCell);
+					cell.setG(cell.getParent().getG()+1);
+					if(!lstOpen.contains(cell)) {
+						lstOpen.add(cell);
+					}	
 				}
+				
 			}
-			dessinerMap(goalCell, lstClose);
-			try {
-				Thread.sleep(250);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			lstOpen.remove(current);
+			lstClose.add(current);
+//			dessinerMap(goalCell, lstClose);
+//			try {
+//				Thread.sleep(1);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 		} return null;
 	}
 	
@@ -147,34 +123,28 @@ public class PathFinding {
 	}
 	
 	/**
-	 * Add the cell from the list if the not already contain in the open list.
-	 * @param l The list to add.
-	 */
-	private void addCurrent(Cell cell, List<Cell> lstCurrent) {
-		if (!lstCurrent.contains(cell)) {
-			lstCurrent.add(cell);
-		}
-	}
-	
-	/**
 	 * Draw the list of all cell.
 	 * @param goal
 	 */
 	public void dessinerMap(Cell goal, List<Cell> lstClose) {
 		System.out.println("******************************");
+//		System.out.println("liste open size ="+this.lstOpen.size());
+//		System.out.println(this.lstOpen.toString());
+//		System.out.println("liste close size ="+this.lstClose.size());
+		System.out.println(lstClose.toString());
 		for (Cell[] cells : lstAllCells) {
 			for (Cell cell : cells) {
 				String s = "";
 				if(cell.getCelluleBloquante())
-					s = " | ";
+					s = "|";
 				else {
-					s = " - ";
+					s = "-";
 				}
 				if(lstClose.contains(cell)) {
-					s = " C ";
+					s = "C";
 				}
 				if(cell == goal) {
-					s =" D ";
+					s ="D";
 				}
 				System.out.print(s);
 			}
@@ -187,6 +157,11 @@ public class PathFinding {
 	
 	public void dessinerMap2(Cell goal,List<Cell> lstGoal) {
 		System.out.println("******************************");
+//		System.out.println("liste open size ="+this.lstOpen.size());
+//		System.out.println(this.lstOpen.toString());
+//		System.out.println("liste close size ="+this.lstClose.size());
+//		System.out.println(this.lstClose.toString());
+		int compteur =0;
 		for (Cell[] cells : lstAllCells) {
 			for (Cell cell : cells) {
 				String s = "";
@@ -196,7 +171,7 @@ public class PathFinding {
 					s = "-";
 				}
 				if(lstGoal.contains(cell)) {
-					s = "C";
+					s="C";
 				}
 				if(cell == goal) {
 					s ="D";
@@ -222,6 +197,7 @@ public class PathFinding {
 		}else {
 			List<Cell> temp = new ArrayList<>();
 			for (int i = cells.size()-1; i >= 0 ; i--) {
+//				System.out.println("c"+cells.get(i));
 				temp.add(cells.get(i));
 			}
 			return temp;
@@ -261,6 +237,56 @@ public class PathFinding {
 	private void findH(Cell targetCell, Cell goalCell) {
 		double h = Math.abs(goalCell.getX() - targetCell.getX()) + Math.abs(goalCell.getY() - targetCell.getY());
 		targetCell.setH(h);
+	}
+	
+	/**
+	 * Find the coast of all the deplacement for the cell and set it.
+	 * @param cell
+	 */
+	private void findG(Cell cell, List<Cell> lstOpen) {
+		double g = 0;
+		if(cell.getIsDiagonal()) {
+			g = 1.4;			
+		} else {
+			g = 1;			
+		}
+
+		if(cell.getParent() != null && cell.getParent().getParent() != null && lstOpen.contains(cell)) {
+			double gParentDeParent = findGParentOfParent(cell);
+			double gParent = cell.getParent().getG() + g;
+//			System.out.println("cellule"+cell.toString()+" parent="+cell.getParent()+" pdp="+cell.getParent().getParent());
+			if(gParentDeParent < gParent) {
+//				System.out.println("on set le gpp");
+				cell.setParent(cell.getParent().getParent());
+				cell.setG(gParentDeParent);
+			}else {
+//				System.out.println("on set le gp");
+				cell.setG(gParent);
+			}
+		}else {
+			cell.setG(cell.getParent().getG()+g);
+//			System.out.println(cell);
+		}
+	}
+	
+	/**
+	 * Find if diagonal
+	 * @param c
+	 * @return
+	 */
+	private double findGParentOfParent(Cell c) {
+		Cell parent = c.getParent().getParent();
+		int delta = Math.abs(parent.getX()-c.getX()) + Math.abs(parent.getY() - c.getY());
+		
+		
+		if(delta == 2) {
+			return parent.getG()+1.4;
+		} else if(delta > 2){
+			return parent.getG()+20;
+		}	else {
+
+			return parent.getG()+1;
+		}
 	}
 	
 	/**
