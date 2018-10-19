@@ -8,7 +8,6 @@ import java.util.List;
 import gameengine.app.GameSetting;
 import gameengine.constante.Constante;
 import gameengine.entities.GameObject;
-import gameengine.ia.TaskManager;
 import gameengine.particule.Emitter;
 import gameengine.particule.ParticuleEngine;
 import gameengine.physic.Point2D;
@@ -28,14 +27,6 @@ import javafx.stage.Stage;
  */
 public class SceneManager {
 	private static SceneManager INSTANCE = null;
-	public static SceneManager getSceneManager() {
-		return INSTANCE;
-	}
-	public static SceneManager createSceneManager(GameWorld world) {
-		INSTANCE = new SceneManager(world);
-		return getSceneManager();
-	}
-	
 	private Stage stage;
 	private Scene scene;
 	private Pane root;
@@ -59,6 +50,14 @@ public class SceneManager {
 		stage.setTitle(setting.getTitle());
 		stage.setScene(scene);
 		stage.show();
+	}
+	
+	public static SceneManager getSceneManager() {
+		return INSTANCE;
+	}
+	public static SceneManager createSceneManager(GameWorld world) {
+		INSTANCE = new SceneManager(world);
+		return getSceneManager();
 	}
 	
 	/**

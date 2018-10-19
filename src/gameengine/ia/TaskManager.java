@@ -5,9 +5,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import gameengine.entities.GameObject;
+import gameengine.ia.pathFinding.PathFinding;
 
 public class TaskManager {
 	private static TaskManager INSTANCE = null;
+	private List<PathFinding> lstPathFinding;
 	public static TaskManager getTaskManager() {
 		return INSTANCE;
 	}

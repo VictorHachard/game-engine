@@ -40,7 +40,9 @@ public class GameEngine {
      * Methode gérant les updates du jeu.
      */
 	public void update() {
+
 		TaskManager.getTaskManager().updateTask();
+		
     	cm.update();
 		gameWorld.getLevel().getLstGameObject().forEach(GameObject::update);
 		SceneManager.getSceneManager().getParticuleEngine().update();

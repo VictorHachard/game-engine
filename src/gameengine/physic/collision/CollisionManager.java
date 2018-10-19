@@ -15,7 +15,7 @@ public class CollisionManager {
 	private List<HandleCollision> lstHandleCollision = new ArrayList<>();
 	private List<Collision> lstCollision = new ArrayList<>();
 	private GameWorld gm;
-	
+	private boolean firstInit = false;
 	public CollisionManager(GameWorld gm) {
 		this.gm = gm;
 	}
@@ -25,6 +25,7 @@ public class CollisionManager {
 	 * @param lstActualCollision A List<Collision>
 	 */
 	private void manageCollision(List<Collision> lstActualCollision) {
+
 		for (Collision collision : lstCollision) {
 			//handle existing collisions.
 			if(lstActualCollision.contains(collision)) {
@@ -54,6 +55,7 @@ public class CollisionManager {
 				lstCollision.add(collision);
 			}
 		}
+
 	}
 	/**
 	 * Verifying if the two object that colide are the object in the HandleColission.
@@ -72,7 +74,12 @@ public class CollisionManager {
 		lstHandleCollision.add(hc);
 	}
 	public void update() {
+		if(!firstInit) {
+			return;
+		}
+		firstInit=true;
 		List<GameObject> lstGa = gm.getLevel().getLstGameObject();
+
 		List<Collision> lstActualCollision = new ArrayList<>();
 		for (GameObject gameObject1 : lstGa) {
 			for (GameObject gameObject2 : lstGa) {
@@ -84,6 +91,7 @@ public class CollisionManager {
 				}
 			}
 		}
+
 		manageCollision(lstActualCollision);
 	}
 }

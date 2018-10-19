@@ -12,8 +12,20 @@ import javafx.scene.media.AudioClip;
  *
  */
 public class SoundManager {
-	Map<String,AudioClip> lstSound = new HashMap<>();
+	private static SoundManager INSTANCE = null;
+	private Map<String,AudioClip> lstSound = new HashMap<>();
 	
+	public static SoundManager getSoundManager(){
+		return INSTANCE;
+	}
+	
+	public static SoundManager createSoundManager() {
+		INSTANCE = new SoundManager();
+		return INSTANCE;			
+	}
+	
+	public SoundManager() {
+	}
 	public void add(String soundName,String nameOfFile) {
 		AudioClip a = new AudioClip(this.getClass().getResource(Constante.SOUND_PATH+nameOfFile).toString());
 		lstSound.put(soundName, a);

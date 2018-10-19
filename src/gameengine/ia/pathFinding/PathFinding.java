@@ -43,11 +43,6 @@ public class PathFinding {
 		if(!closeList.isEmpty()) {
 			lstGoodPath = construcGoodPath(closeList.get(closeList.size()-1), lstGoodPath);			
 		}
-		
-		System.out.println(lstGoodPath.size());
-		for (Cell tt : lstGoodPath) {
-			System.out.println(tt.toString());
-		}
 		dessinerMap2(goalCell,lstGoodPath);		
 	}
 	
@@ -74,10 +69,7 @@ public class PathFinding {
 					return 1;
 				}
 			});
-			System.out.println(lstOpen.size());
 			Cell current = lstOpen.get(0);
-			
-			System.out.println("current"+current.toString2());
 			if(isDestination(current, goalCell)) {
 				lstClose.add(current);
 				return lstClose;
@@ -100,27 +92,9 @@ public class PathFinding {
 			}
 			lstOpen.remove(current);
 			lstClose.add(current);
-//			dessinerMap(goalCell, lstClose);
-//			try {
-//				Thread.sleep(1);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
 		} return null;
 	}
 	
-	/**
-	 * Add the cell from the list if the not already contain in the open list.
-	 * @param l The list to add.
-	 */
-	private void addOpen(List<Cell> l, List<Cell> lstOpen) {
-		for (Cell cell : l) {
-			if (!lstOpen.contains(cell)) {
-				lstOpen.add(cell);
-			}
-		}
-	}
 	
 	/**
 	 * Draw the list of all cell.
