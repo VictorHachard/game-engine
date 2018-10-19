@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
 import javafx.stage.Stage;
 
 public class Main extends Application
@@ -32,6 +33,8 @@ public class Main extends Application
         stage.setResizable(false);
         stage.show();
         v.start();
+  
+        
     }
     
     
