@@ -17,7 +17,7 @@ public class PathFinding {
 	GameWorld gw;
 	int height;
 	int width;
-	
+	Cell goalCell;
 	public PathFinding(GameObject gameObject,Point2D goal,GameWorld gw) {
 		this.ga = gameObject;
 		this.gw = gw;
@@ -43,7 +43,15 @@ public class PathFinding {
 		if(!closeList.isEmpty()) {
 			lstGoodPath = construcGoodPath(closeList.get(closeList.size()-1), lstGoodPath);			
 		}
+	}
+	
+	public List<Cell> takePath(){
+		Point2D start = ga.getPosition().copy();
+		Cell currentCell= lstAllCells[(int) Math.round(start.getY())][(int) Math.round(start.getX())];
+		List<Cell> closeList = estimatePath(goalCell, currentCell);
+		List<Cell>lstGoodPath =new ArrayList<>();
 		dessinerMap2(goalCell,lstGoodPath);		
+		return construcGoodPath(closeList.get(closeList.size()-1), lstGoodPath);
 	}
 	
 	/**
