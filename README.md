@@ -4,21 +4,7 @@ Game engine is a tools available for game designers to code out a game quickly a
 
 ![Sample](samle.gif)
 
-## Gallery
-
-...
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-You need Java.
-
-You will need to link your game project to the game engine.
-
-### Installing
+## Building
 
 A step by step examples to help you initialize the game engine for your project.
 
@@ -39,28 +25,17 @@ The second step is to override several methode :
 - The initCamera
 - The initParticle
 
-## Running the tests
-
-...
-
 ## What I Learned
 
 - Java and JavaFX advanced
 - Code organisation/architecture
 
-## Contributors
-
-I want to thank everyone who contributed to the project.
-
-First of all, ...
-
-## Release History
-
-## Authors
+## Authors & Contributors
 
 * **Hachard Victor** - *Initial work* - [Glaskani](https://github.com/Glaskani)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+I want to thank everyone who contributed to the project.
+See the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
