@@ -2,7 +2,7 @@
 
 Game engine is a tools available for game designers to code out a game quickly and easily without building one from the ground up. This game engine is a 2D based using JavaFX.
 
-![Sample](samle.gif)
+![Sample](https://github.com/VictorHachard/GameEngine/blob/master/sample.gif)
 
 ## Building
 
@@ -32,11 +32,11 @@ The second step is to override several methode :
 
 ## Authors & Contributors
 
-* **Hachard Victor** - *Initial work* - [Glaskani](https://github.com/Glaskani)
+* **Hachard Victor** - *Initial work* - [VictorHachard](https://github.com/VictorHachard)
 
 I want to thank everyone who contributed to the project.
-See the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See the list of [contributors](https://github.com/VictorHachard/GameEngine/graphs/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/VictorHachard/GameEngine/blob/master/LICENSE) file for details
