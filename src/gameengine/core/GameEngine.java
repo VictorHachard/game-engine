@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import gameengine.app.DebugBox;
 import gameengine.core.gameloop.VariableSteps;
 import gameengine.entities.GameObject;
 import gameengine.ia.TaskManager;
@@ -27,6 +28,9 @@ public class GameEngine {
 	}
 	
     private void fpsReporter(Integer fps) {
+    	if (DebugBox.getGameSetting() != null) {
+    		DebugBox.getGameSetting().setFPS(fps.toString());
+    	}
     	System.out.println(fps);
 	}
 
@@ -40,7 +44,6 @@ public class GameEngine {
      * Methode gérant les updates du jeu.
      */
 	public void update() {
-
 		TaskManager.getTaskManager().updateTask();
 		
     	cm.update();

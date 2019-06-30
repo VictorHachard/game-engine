@@ -49,5 +49,9 @@ public class GameSetting {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	public void setDebugWindows() {
+		DebugBox db = DebugBox.createDebugBox();
+		db.defaultSetting();
+	}
 	
 }

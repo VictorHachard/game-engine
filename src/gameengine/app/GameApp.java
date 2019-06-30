@@ -18,6 +18,7 @@ public abstract class GameApp extends Application {
 	private SceneManager manager;
 	private GameWorld gameWorld;
 	private GameEngine gameEngine;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Builder.createSingleton();
@@ -38,7 +39,7 @@ public abstract class GameApp extends Application {
 		initCollision();
 		initParticle();
 		initTest();
-		System.out.println("FIN INIT");
+		System.out.println("END INIT");
 	}
 	
 	private void initGameEngine(TaskManager mt) {

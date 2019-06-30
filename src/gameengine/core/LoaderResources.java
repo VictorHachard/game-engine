@@ -29,7 +29,7 @@ public class LoaderResources {
 	public void initResources() {
 		initImage();
 		initSound();
-		System.out.println("FIN DE LOAD");
+		System.out.println("END RESSOURCE");
 	}
 	
 	

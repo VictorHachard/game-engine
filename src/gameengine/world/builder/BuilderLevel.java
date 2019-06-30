@@ -46,7 +46,8 @@ public class BuilderLevel {
 	 */
 	public static Level buildLevel(String nomLevel , String fileName, Integer pas) {
 		Level l = buildLevel(nomLevel);
-		URL url = BuilderLevel.class.getResource(Constante.LEVEL_TEXT_PATH+fileName);
+		System.out.println(BuilderLevel.class.getResource(Constante.LEVEL_TEXT_PATH + fileName));
+		URL url = BuilderLevel.class.getResource(Constante.LEVEL_TEXT_PATH + fileName);
 		File file = new File(url.getPath());
 		// Open the File
 		try {
