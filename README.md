@@ -2,7 +2,18 @@
 
 Game engine is a tools available for game designers to code out a game quickly and easily without building one from the ground up. This game engine is a 2D based using JavaFX.
 
-## Building
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Requirements
+
+The Game Engine requires the following to run:
+
+- [Java](https://www.java.com/fr/download/)
+- [JavaFX](https://www.oracle.com/technetwork/java/javafx/overview/index.html)
+
+### Building
 
 A step by step examples to help you initialize the game engine for your project.
 
@@ -14,7 +25,7 @@ public class YourGame extends GameApp {
 }
 ```
 
-The second step is to override several methode :
+The second step is to override several methods:
 
 - The initSetting
 - The initLevel
@@ -23,10 +34,12 @@ The second step is to override several methode :
 - The initCamera
 - The initParticle
 - The initUI
+- ...
 
 ## What I Learned
 
-- Java and JavaFX advanced
+- Advanced Java
+- Advanced JavaFX
 - Code organisation/architecture
 
 ## Authors & Contributors
