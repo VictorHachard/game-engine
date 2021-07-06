@@ -1,5 +1,5 @@
-[![BCH compliance](https://bettercodehub.com/edge/badge/VictorHachard/GameEngine?branch=master)](https://bettercodehub.com/)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e3dd8b3d1e7d47a999d11311a8836d05)](https://www.codacy.com/gh/VictorHachard/GameEngine/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=VictorHachard/GameEngine&amp;utm_campaign=Badge_Grade)
+[![BCH compliance](https://bettercodehub.com/edge/badge/VictorHachard/game-engine?branch=master)](https://bettercodehub.com/)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e3dd8b3d1e7d47a999d11311a8836d05)](https://www.codacy.com/gh/VictorHachard/game-engine/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=VictorHachard/game-engine&amp;utm_campaign=Badge_Grade)
 
 # Game Engine
 
@@ -47,7 +47,7 @@ The second step is to override several methods:
 
 ## Authors & Contributors
 
-*   **Hachard Victor** - *Initial work* - [VictorHachard](https://github.com/VictorHachard)
+-   **Hachard Victor** - *Initial work* - [VictorHachard](https://github.com/VictorHachard)
 
 I want to thank everyone who contributed to the project.
 See the list of [contributors](https://github.com/VictorHachard/GameEngine/graphs/contributors) who participated in this project.
