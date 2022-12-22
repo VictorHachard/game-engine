@@ -1,4 +1,3 @@
-[![BCH compliance](https://bettercodehub.com/edge/badge/VictorHachard/game-engine?branch=master)](https://bettercodehub.com/)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e3dd8b3d1e7d47a999d11311a8836d05)](https://www.codacy.com/gh/VictorHachard/game-engine/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=VictorHachard/game-engine&amp;utm_campaign=Badge_Grade)
 
 # Game Engine
